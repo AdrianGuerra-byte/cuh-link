@@ -1,7 +1,7 @@
 "use client"; // <-- Client Component
 
 import { useState } from 'react';
-import { useTheme } from 'next-themes';
+// import { useTheme } from 'next-themes'; // <-- Ya no se necesita aquí
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ModeToggle } from "@/components/ui/mode-toggle";
+// import { ModeToggle } from "@/components/ui/mode-toggle"; // <-- Movido al layout
 
 import {
   Tooltip,
@@ -24,23 +24,22 @@ import {
 
 import { useRouter } from 'next/navigation'; 
 import { useAuthStore } from '@/stores/useAuthStore';
-import api from '@/lib/api';
+// import api from '@/lib/api'; // (Asegúrate de que este archivo exista)
 import {Loader2 } from 'lucide-react';
 import axios from 'axios';
-import Image from 'next/image';
+// import Image from 'next/image'; // <-- Ya no se necesita aquí
 
 export default function LoginForm() {
-  const { theme } = useTheme();
+  // const { theme } = useTheme(); // <-- Ya no se necesita
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-//   Estados de UI
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const router = useRouter();
   const loginAction = useAuthStore((state) => state.login);
 
-  // simula el envío al backend
+  // Tu lógica de handleSubmit (sin cambios)
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -51,21 +50,14 @@ export default function LoginForm() {
             email, 
             password 
         });
-
         const token = response.data.token;
-
-        //Accion Login de Zustand
         const user = loginAction(token);
-
-        //Redirigir según el rol
         router.push(`/${user.area.toLowerCase()}`);
-    } catch (err: any) { // Especificamos el tipo 'any' para 'err'
+    } catch (err: any) { 
         console.error(err);
         if (err.response && err.response.status === 401) {
-          // Si la API de simulación nos da un 401
           setError(err.response.data.message || 'Usuario o contraseña incorrectos.');
         } else {
-          // Otro error (ej. de red)
           setError('Error al conectar con el servidor. Intente de nuevo.');
         }
     } finally {
@@ -74,37 +66,16 @@ export default function LoginForm() {
   };
 
   return (
+    // El TooltipProvider debería ir en tu 'app/layout.tsx' (raíz)
     <TooltipProvider delayDuration={300}>
-      <div className="relative">
-        <Card className="w-[420px] bg-card/40 backdrop-blur-md border-border/50 shadow-2xl">
-        <div className="absolute left-4 top-4 z-10">
-          <ModeToggle />
-        </div>
+      {/* Ya no se necesita el 'div' relativo ni el Tigrillo */}
+      <Card className="w-[420px] bg-card/40 backdrop-blur-md border-border/50 shadow-2xl">
+        {/* El ModeToggle se movió al layout */}
+        
           <CardHeader className="space-y-3 pb-6">
-            {/* Logo CUH */}
-            <div className="flex justify-center mb-2">
-              {/* Logo Claro */}
-              <Image 
-                src={'/cuhv-light.avif'} 
-                alt="Logo CUH" 
-                width={800} 
-                height={486}
-                // ---
-                className="h-48 w-auto object-contain block dark:hidden"
-                priority 
-              />
-              {/* Logo Oscuro */}
-              <Image 
-                src={'/cuhv_dark.avif'} 
-                alt="Logo CUH" 
-                width={800} 
-                height={486}
-                // ---
-                className="h-48 w-auto object-contain hidden dark:block"
-                priority 
-              />
-            </div>
-            <CardTitle className="text-2xl font-bold text-center bg-linear-to-r from-primary to-primary/80 bg-clip-text text-transparent ">
+            {/* El Logo se movió al layout */}
+            
+            <CardTitle className="text-2xl font-bold text-center bg-linear-to-r from-primary to-primary/80 bg-clip-text text-transparent pt-8">
               Iniciar Sesión
             </CardTitle>
             <CardDescription className="text-center text-foreground">
@@ -177,7 +148,6 @@ export default function LoginForm() {
             </CardFooter>
           </form>
         </Card>
-      </div>
     </TooltipProvider>
   );
 }

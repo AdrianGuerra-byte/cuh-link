@@ -3,6 +3,28 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Asegurar que las animaciones SVG funcionen correctamente */
+svg path {
+  animation: none !important;
+}
+
+/* Animación de entrada del Tigrillo desde abajo */
+@keyframes slideUpTigrillo {
+  0% {
+    transform: translateY(100%) translateX(0);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up-tigrillo {
+  animation: slideUpTigrillo 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards;
+  opacity: 0;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
