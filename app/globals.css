@@ -72,7 +72,7 @@ svg path {
   --background: oklch(96.3% 0.01 245.8);
   /* Texto: Azul CUH (Primario #032A63) */
   --foreground: oklch(26.6% 0.08 261.3);
-  
+
   /* Tarjetas: Blanco puro para "flotar" */
   --card: oklch(1 0 0);
   --card-foreground: oklch(26.6% 0.08 261.3);
@@ -83,12 +83,12 @@ svg path {
   --primary: oklch(26.6% 0.08 261.3);
   /* Texto sobre primario: Gris/Azul pálido */
   --primary-foreground: oklch(96.3% 0.01 245.8);
-  
+
   /* Secundario: Dorado CUH (Primario #C7A23A) */
   --secondary: oklch(67.7% 0.11 86.8);
   /* Texto sobre secundario: Azul CUH */
   --secondary-foreground: oklch(26.6% 0.08 261.3);
-  
+
   /* Muted: Fondo gris pálido */
   --muted: oklch(96.3% 0.01 245.8);
   /* Texto Muted: Azul secundario (#7597BA) */
@@ -141,7 +141,7 @@ svg path {
   --primary: oklch(67.7% 0.11 86.8);
   /* Texto sobre primario: Azul CUH */
   --primary-foreground: oklch(26.6% 0.08 261.3);
-  
+
   /* Secundario: Dorado Oscuro (Secundario #AE850F) */
   --secondary: oklch(57.7% 0.12 87.0);
   --secondary-foreground: oklch(26.6% 0.08 261.3);
@@ -150,7 +150,7 @@ svg path {
   --muted: oklch(29.5% 0.08 261.3);
   /* Texto Muted: Azul secundario (#7597BA) */
   --muted-foreground: oklch(64.1% 0.07 245.9);
-  
+
   /* Acento: Dorado Claro (Secundario #DBC481) */
   --accent: oklch(80.5% 0.09 90.7);
   --accent-foreground: oklch(26.6% 0.08 261.3);
@@ -179,4 +179,13 @@ svg path {
   --sidebar-accent-foreground: oklch(96.3% 0.01 245.8);
   --sidebar-border: oklch(35% 0.07 260);
   --sidebar-ring: oklch(67.7% 0.11 86.8);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
