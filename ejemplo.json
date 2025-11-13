@@ -1,0 +1,102 @@
+{
+  "usuario": {
+    "nombre": "Pedro",
+    "area": "Finanzas",
+    "rol": "Caja"
+  },
+  
+  "menu": [
+    {
+      "nombre": "Finanzas",
+      "icono": "DollarSign",
+      "hijos": [
+        { 
+          "nombre": "Pagos", 
+          "ruta": "/finanzas/pagos" 
+        },
+        { 
+          "nombre": "Adeudos", 
+          "ruta": "/finanzas/adeudos" 
+        },
+        { 
+          "nombre": "Alumnos Bajas", 
+          "ruta": "/finanzas/bajas" 
+        }
+      ]
+    }
+  ],
+  
+  "dashboard": {
+    "ruta": "/finanzas",
+    "modulos": [
+      {
+        "idModulo": 10,
+        "titulo": "Realizar Pagos",
+        "descripcion": "Aplicar pagos para todos los niveles académicos.",
+        "icono": "Banco",
+        "ruta": "/finanzas/pagos",
+        "permisos": {
+          "puede_ver": true,
+          "puede_crear": true,
+          "puede_editar": false,
+          "puede_eliminar": false,
+          "alcance": ["Licenciatura", "Maestria", "Doctorado"] 
+        }
+      },
+      {
+        "idModulo": 11,
+        "titulo": "Gestión de Adeudos",
+        "descripcion": "Consultar y editar adeudos.",
+        "icono": "CreditCard",
+        "ruta": "/finanzas/adeudos",
+        "permisos": {
+          "puede_ver": true,
+          "puede_crear": true,
+          "puede_editar": true,
+          "puede_eliminar": false,
+          "alcance": ["Licenciatura", "Maestria"]
+        }
+      },
+      {
+        "idModulo": 12,
+        "titulo": "Alumnos Bajas",
+        "descripcion": "Consultar historial de bajas (solo Licenciatura).",
+        "icono": "UserX",
+        "ruta": "/finanzas/bajas",
+        "permisos": {
+          "puede_ver": true,
+          "puede_crear": false,
+          "puede_editar": false,
+          "puede_eliminar": false,
+          "alcance": ["Licenciatura"]
+        }
+      }
+    ]
+  }
+}
+
+
+{
+  "permisos": {
+    "idModulo": 12,
+    "puede_ver": true,
+    "puede_crear": false,
+    "puede_editar": false,
+    "puede_eliminar": false,
+    "alcance_aplicado": ["Licenciatura"] 
+  },
+  "datos": [
+    { 
+      "matricula": "L001", 
+      "nombre_completo": "Juan Perez (Licenciatura)", 
+      "tipo_baja": "Temporal", 
+      "fecha": "2024-10-01" 
+    },
+    { 
+      "matricula": "L005", 
+      "nombre_completo": "Ana Torres (Licenciatura)", 
+      "tipo_baja": "Definitiva", 
+      "fecha": "2024-09-15" 
+    }
+  ]
+}
