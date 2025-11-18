@@ -1,14 +1,8 @@
 "use client"
 
 import * as React from "react"
-import {
-  BookOpen,
-  Bot,
-  Settings2,
-  SquareTerminal,
-} from "lucide-react"
 
-import { NavMain } from "@/components/nav-main"
+import { NavDynamic } from "@/components/nav-dynamic"
 import { NavUser } from "@/components/nav-user"
 import { SidebarLogo } from "@/components/sidebar-logo"
 import {
@@ -19,70 +13,8 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 
-// Informacion de ejemplo.
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  navMain: [
-    {
-      title: "Sistemas",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: "Historial",
-          url: "#",
-        },
-        {
-          title: "Pagos",
-          url: "#",
-        },
-        {
-          title: "Bajas",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Centros de Computo",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Inventario",
-          url: "#",
-        },
-        {
-          title: "Copias",
-          url: "#",
-        },
-        {
-          title: "Reportes",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Biblioteca",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Inventario",
-          url: "#",
-        },
-        {
-          title: "Control de Préstamos",
-          url: "#",
-        },
-      ],
-    }
-  ],
-}
+// Importar el JSON estático
+import menuData from "@/data/menu-data.json"
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -91,11 +23,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarLogo />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        {/* <NavProjects projects={data.projects} /> */}
+        <NavDynamic modulos={menuData.menu} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={{
+          name: menuData.usuario.nombre + " " + menuData.usuario.apellidoPaterno,
+          email: `${menuData.usuario.area} - ${menuData.usuario.rol}`,
+          avatar: "/avatars/shadcn.jpg",
+        }} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

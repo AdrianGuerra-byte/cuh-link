@@ -15,7 +15,6 @@ import { useTheme } from "next-themes"
 import {
   Avatar,
   AvatarFallback,
-  AvatarImage,
 } from "@/components/ui/avatar"
 import {
   DropdownMenu,
@@ -49,6 +48,21 @@ export function NavUser({
     setTheme(theme === "dark" ? "light" : "dark")
   }
 
+  // Generar iniciales del nombre (primera letra de cada palabra)
+  const getInitials = (name: string) => {
+    const words = name.trim().split(' ')
+    if (words.length >= 2) {
+      // Si tiene al menos 2 palabras, toma la primera letra de las primeras 2
+      return (words[0][0] + words[1][0]).toUpperCase()
+    } else if (words.length === 1 && words[0].length > 0) {
+      // Si solo tiene una palabra, toma las primeras 2 letras
+      return words[0].substring(0, 2).toUpperCase()
+    }
+    return 'CU'
+  }
+
+  const initials = getInitials(user.name)
+
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -59,8 +73,9 @@ export function NavUser({
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg">CUH</AvatarFallback>
+                <AvatarFallback className="rounded-lg bg-primary text-primary-foreground font-semibold">
+                  {initials}
+                </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">{user.name}</span>
@@ -78,8 +93,9 @@ export function NavUser({
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                  <AvatarFallback className="rounded-lg bg-primary text-primary-foreground font-semibold">
+                    {initials}
+                  </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">{user.name}</span>

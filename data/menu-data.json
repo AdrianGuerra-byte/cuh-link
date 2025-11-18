@@ -1,0 +1,150 @@
+{
+  "usuario": {
+    "idUsuario": 7,
+    "nombre": "Adrian",
+    "apellidoPaterno": "Guerra",
+    "area": "Sistemas",
+    "rol": "Desarrollador",
+    "alcanceDefault": "LICU"
+  },
+  "menu": [
+    {
+      "idModulo": 1,
+      "nombre": "Promoción",
+      "hijos": [
+        {
+          "idModulo": 101,
+          "nombre": "Prospectos",
+          "permisos": {
+            "puede_ver": true,
+            "puede_crear": true,
+            "puede_editar": true,
+            "puede_eliminar": false,
+            "alcance": ["Global"]
+          },
+          "hijos": []
+        }
+      ]
+    },
+    {
+      "idModulo": 2,
+      "nombre": "Sistemas",
+      "hijos": [
+        {
+          "idModulo": 201,
+          "nombre": "Convenios",
+          "permisos": {
+            "puede_ver": true,
+            "puede_crear": true,
+            "puede_editar": true,
+            "puede_eliminar": true,
+            "alcance": ["Global"]
+          },
+          "hijos": []
+        }
+      ]
+    },
+    {
+      "idModulo": 3,
+      "nombre": "Finanzas",
+      "hijos": [
+        {
+          "idModulo": 301,
+          "nombre": "Pagos",
+          "permisos": {
+            "puede_ver": true,
+            "puede_crear": true,
+            "puede_editar": false,
+            "puede_eliminar": false,
+            "alcance": ["LICU", "MACU", "DOCU"]
+          },
+          "hijos": []
+        },
+        {
+          "idModulo": 302,
+          "nombre": "Adeudos",
+          "permisos": {
+            "puede_ver": true,
+            "puede_crear": true,
+            "puede_editar": true,
+            "puede_eliminar": false,
+            "alcance": ["Global"]
+          },
+          "hijos": []
+        },
+        {
+          "idModulo": 303,
+          "nombre": "Bajas",
+          "permisos": {
+            "puede_ver": true,
+            "puede_crear": false,
+            "puede_editar": false,
+            "puede_eliminar": false,
+            "alcance": ["LICU"]
+          },
+          "hijos": []
+        }
+      ]
+    },
+    {
+      "idModulo": 4,
+      "nombre": "Servicios Escolares",
+      "hijos": [
+        {
+          "idModulo": 401,
+          "nombre": "Servicio Social",
+          "permisos": {
+            "puede_ver": true,
+            "puede_crear": true,
+            "puede_editar": false,
+            "puede_eliminar": false,
+            "alcance": ["LICU"]
+          },
+          "hijos": []
+        },
+        {
+          "idModulo": 402,
+          "nombre": "Practicas",
+          "permisos": {
+            "puede_ver": true,
+            "puede_crear": true,
+            "puede_editar": false,
+            "puede_eliminar": false,
+            "alcance": ["LICU"]
+          },
+          "hijos": []
+        },
+        {
+          "idModulo": 403,
+          "nombre": "Constancias",
+          "hijos": [
+            {
+              "idModulo": 404,
+              "nombre": "Total",
+              "permisos": {
+                "puede_ver": true,
+                "puede_crear": true,
+                "puede_editar": false,
+                "puede_eliminar": false,
+                "alcance": ["LICU", "MACU", "DOCU"]
+              },
+              "hijos": []
+            },
+            {
+              "idModulo": 405,
+              "nombre": "Parcial",
+              "permisos": {
+                "puede_ver": true,
+                "puede_crear": true,
+                "puede_editar": false,
+                "puede_eliminar": false,
+                "alcance": ["LICU", "MACU"]
+              },
+              "hijos": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
