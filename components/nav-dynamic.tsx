@@ -57,10 +57,26 @@ export function NavDynamic({
 }: {
   modulos: Modulo[]
 }) {
+  // Función para normalizar nombres a formato de URL
+  const normalizeUrlSegment = (nombre: string): string => {
+    return nombre
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "") // Eliminar acentos
+      .replace(/\s+/g, "-") // Espacios a guiones
+      .replace(/[^a-z0-9-]/g, "") // Eliminar caracteres especiales
+  }
+
+  // Función para construir la ruta completa basada en la jerarquía
+  const buildPath = (pathSegments: string[]): string => {
+    return "/" + pathSegments.map(normalizeUrlSegment).join("/")
+  }
+
   // Función recursiva para renderizar los items del menú
-  const renderMenuItems = (items: Modulo[], level: number = 0): React.ReactNode => {
+  const renderMenuItems = (items: Modulo[], level: number = 0, parentPath: string[] = []): React.ReactNode => {
     return items.map((item) => {
       const hasChildren = item.hijos && item.hijos.length > 0
+      const currentPath = [...parentPath, item.nombre]
 
       if (hasChildren) {
         // Renderiza un Collapsible si tiene hijos
@@ -84,7 +100,7 @@ export function NavDynamic({
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <SidebarMenuSub>
-                  {renderSubItems(item.hijos, level + 1)}
+                  {renderSubItems(item.hijos, level + 1, currentPath)}
                 </SidebarMenuSub>
               </CollapsibleContent>
             </SidebarMenuItem>
@@ -95,10 +111,12 @@ export function NavDynamic({
         if (level === 0) {
           // Nivel raíz sin hijos - con icono
           const Icono = iconMap[item.nombre] || FileText
+          const itemPath = buildPath(currentPath)
+          
           return (
             <SidebarMenuItem key={item.idModulo}>
               <SidebarMenuButton asChild tooltip={item.nombre}>
-                <a href={`/modulo/${item.idModulo}`}>
+                <a href={itemPath}>
                   <Icono className="h-4 w-4" />
                   <span>{item.nombre}</span>
                 </a>
@@ -111,9 +129,10 @@ export function NavDynamic({
   }
 
   // Función para renderizar sub-items (hijos y nietos - SIN iconos)
-  const renderSubItems = (items: Modulo[], level: number): React.ReactNode => {
+  const renderSubItems = (items: Modulo[], level: number, parentPath: string[]): React.ReactNode => {
     return items.map((item) => {
       const hasChildren = item.hijos && item.hijos.length > 0
+      const currentPath = [...parentPath, item.nombre]
 
       if (hasChildren) {
         // Collapsible anidado - SIN icono
@@ -132,18 +151,20 @@ export function NavDynamic({
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <SidebarMenuSub className="ml-3">
-                  {renderSubItems(item.hijos, level + 1)}
+                  {renderSubItems(item.hijos, level + 1, currentPath)}
                 </SidebarMenuSub>
               </CollapsibleContent>
             </SidebarMenuSubItem>
           </Collapsible>
         )
       } else {
-        // Hoja final - SIN icono
+        // Hoja final - SIN icono - Genera la ruta completa
+        const itemPath = buildPath(currentPath)
+        
         return (
           <SidebarMenuSubItem key={item.idModulo}>
             <SidebarMenuSubButton asChild>
-              <a href={`/modulo/${item.idModulo}`}>
+              <a href={itemPath}>
                 <span className="text-sm">{item.nombre}</span>
               </a>
             </SidebarMenuSubButton>
