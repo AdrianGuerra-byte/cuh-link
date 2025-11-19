@@ -11,10 +11,14 @@
     {
       "idModulo": 1,
       "nombre": "Promoción",
+      "slug": "promocion",
+      "ruta": "/promocion",
       "hijos": [
         {
           "idModulo": 101,
           "nombre": "Prospectos",
+          "slug": "prospectos",
+          "ruta": "/promocion/prospectos",
           "permisos": {
             "puede_ver": true,
             "puede_crear": true,
@@ -29,10 +33,14 @@
     {
       "idModulo": 2,
       "nombre": "Sistemas",
+      "slug": "sistemas",
+      "ruta": "/sistemas",
       "hijos": [
         {
           "idModulo": 201,
           "nombre": "Convenios",
+          "slug": "convenios",
+          "ruta": "/sistemas/convenios",
           "permisos": {
             "puede_ver": true,
             "puede_crear": true,
@@ -47,10 +55,14 @@
     {
       "idModulo": 3,
       "nombre": "Finanzas",
+      "slug": "finanzas",
+      "ruta": "/finanzas",
       "hijos": [
         {
           "idModulo": 301,
           "nombre": "Pagos",
+          "slug": "pagos",
+          "ruta": "/finanzas/pagos",
           "permisos": {
             "puede_ver": true,
             "puede_crear": true,
@@ -63,6 +75,8 @@
         {
           "idModulo": 302,
           "nombre": "Adeudos",
+          "slug": "adeudos",
+          "ruta": "/finanzas/adeudos",
           "permisos": {
             "puede_ver": true,
             "puede_crear": true,
@@ -75,6 +89,8 @@
         {
           "idModulo": 303,
           "nombre": "Bajas",
+          "slug": "bajas",
+          "ruta": "/finanzas/bajas",
           "permisos": {
             "puede_ver": true,
             "puede_crear": false,
@@ -89,10 +105,14 @@
     {
       "idModulo": 4,
       "nombre": "Servicios Escolares",
+      "slug": "servicios-escolares",
+      "ruta": "/servicios-escolares",
       "hijos": [
         {
           "idModulo": 401,
           "nombre": "Servicio Social",
+          "slug": "servicio-social",
+          "ruta": "/servicios-escolares/servicio-social",
           "permisos": {
             "puede_ver": true,
             "puede_crear": true,
@@ -104,7 +124,9 @@
         },
         {
           "idModulo": 402,
-          "nombre": "Practicas",
+          "nombre": "Prácticas",
+          "slug": "practicas",
+          "ruta": "/servicios-escolares/practicas",
           "permisos": {
             "puede_ver": true,
             "puede_crear": true,
@@ -117,10 +139,14 @@
         {
           "idModulo": 403,
           "nombre": "Constancias",
+          "slug": "constancias",
+          "ruta": "/servicios-escolares/constancias",
           "hijos": [
             {
               "idModulo": 404,
               "nombre": "Total",
+              "slug": "total",
+              "ruta": "/servicios-escolares/constancias/total",
               "permisos": {
                 "puede_ver": true,
                 "puede_crear": true,
@@ -133,6 +159,8 @@
             {
               "idModulo": 405,
               "nombre": "Parcial",
+              "slug": "parcial",
+              "ruta": "/servicios-escolares/constancias/parcial",
               "permisos": {
                 "puede_ver": true,
                 "puede_crear": true,
@@ -143,6 +171,56 @@
               "hijos": []
             }
           ]
+        }
+      ]
+    },
+    {
+      "idModulo": 5,
+      "nombre": "Catálogos",
+      "slug": "catalogos",
+      "ruta": "/catalogos",
+      "hijos": [
+        {
+          "idModulo": 501,
+          "nombre": "Alumnos",
+          "slug": "alumnos",
+          "ruta": "/catalogos/alumnos",
+          "permisos": {
+            "puede_ver": true,
+            "puede_crear": false,
+            "puede_editar": false,
+            "puede_eliminar": false,
+            "alcance": ["LICU"]
+          },
+          "hijos": []
+        },
+        {
+          "idModulo": 502,
+          "nombre": "Docentes",
+          "slug": "docentes",
+          "ruta": "/catalogos/docentes",
+          "permisos": {
+            "puede_ver": true,
+            "puede_crear": false,
+            "puede_editar": false,
+            "puede_eliminar": false,
+            "alcance": ["Global"]
+          },
+          "hijos": []
+        },
+        {
+          "idModulo": 503,
+          "nombre": "Administrativos",
+          "slug": "administrativos",
+          "ruta": "/catalogos/administrativos",
+          "permisos": {
+            "puede_ver": true,
+            "puede_crear": false,
+            "puede_editar": false,
+            "puede_eliminar": false,
+            "alcance": ["Global"]
+          },
+          "hijos": []
         }
       ]
     }

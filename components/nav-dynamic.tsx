@@ -9,6 +9,7 @@ import {
   GraduationCap,
   Megaphone,
   Settings,
+  BookOpenText,
 } from "lucide-react"
 
 import {
@@ -50,6 +51,7 @@ const iconMap: Record<string, React.ElementType> = {
   "Sistemas": Settings,
   "Servicios Escolares": GraduationCap,
   "Administración": Building2,
+  "Catálogos": BookOpenText,
 }
 
 export function NavDynamic({
